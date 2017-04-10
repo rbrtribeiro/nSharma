@@ -1,0 +1,7 @@
+loadManager.C
+PerformanceModel.C
+LinearPerformanceModel.C
+CostLinearPerformanceModel.C
+Partitioner.C
+
+LIB = $(FOAM_LIBBIN)/libloadManager
