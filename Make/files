@@ -1,7 +1,13 @@
-loadManager.C
+nSharma.C
 PerformanceModel.C
-LinearPerformanceModel.C
-CostLinearPerformanceModel.C
+LinearLoadManagerModel.C
+CostLinearLoadManagerModel.C
+upperBoundTPowerManagerModel.cpp
+NLoptPowerManagerModel.cpp
+ScalarizationUpperTMinT.cpp
+MinTPowerManagerModel.cpp
 Partitioner.C
+CommGraph.cpp
+parMetisDecompDynamic.C
 
-LIB = $(FOAM_LIBBIN)/libloadManager
+LIB = $(FOAM_LIBBIN)/libnSharma

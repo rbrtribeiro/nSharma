@@ -11,50 +11,44 @@ Class
 #ifndef PerformanceModel_H
 #define PerformanceModel_H
 
+
 #include "List.H"
-#include "labelList.H"
-
-#include <cmath>
 #include <vector>
-#include "fvMeshDistribute.H"
-
 
 namespace Foam {
 
-class Partitioner;
-
-struct loadManager_parameters;
-typedef struct loadManager_parameters loadManagerParameters;
+struct nSharma_parameters;
+typedef struct nSharma_parameters nSharmaParameters;
 
 class PerformanceModel {
-protected:
-	class decompDetails {
-	public:
-		labelList decomposition;
-		labelList count;
-		long totalReceived;
-		long totalSend;
-		long totalcellsTransfered;
-		bool apply;
-		float Tstar;
-		float Tmigrt;
+public:
 
-		decompDetails(labelList& newD){
-			decomposition = newD;
-			count = fvMeshDistribute::countCells(decomposition);
-		}
+	virtual void update()=0;
+	virtual List<float> getTperCell()=0;
 
-	};
+};
+
+
+class TperCellPerformanceModel : public PerformanceModel {
+
+private:
+	std::vector<std::vector<float> > last_TperCell;
+	std::vector<float> window_weights;
+	bool first;
 
 public:
-	PerformanceModel(loadManagerParameters&);
-	virtual ~PerformanceModel()=0;
 
-	bool virtual Balance(labelList&)=0;
-	void virtual PostLoadMigrationUpdate()=0;
+	List<float> TperCell;
 
-	loadManagerParameters& PARAMS_;
 
+	TperCellPerformanceModel(int);
+	virtual ~TperCellPerformanceModel();
+	virtual void update();
+	void windowAverage(List<float> raw,
+			std::vector<std::vector<float> >& last_,
+			List<float>& r);
+
+	virtual List<float> getTperCell();
 
 };
 

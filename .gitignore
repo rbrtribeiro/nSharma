@@ -86,3 +86,15 @@ doc/Doxygen/DTAGS
 
 *.cproject
 *.project
+
+*.lo
+*.Plo
+*.Po
+*.lai
+Makefile
+*.so*
+*.py*
+nlopt/include
+nlopt/share
+nlopt/lib
+nlopt/.libs
