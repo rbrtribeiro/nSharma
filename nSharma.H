@@ -24,6 +24,8 @@
 #include "nSharma_common.h"
 #include "PowerInterface.h"
 
+#include "nSharma-FOAMOnlineProfiler.H"
+
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
 #define WINDOW_BUSY_RSD_SIZE 4
